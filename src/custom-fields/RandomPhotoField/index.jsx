@@ -1,7 +1,7 @@
-import RandomPhoto from 'components/RandomPhoto';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { FormGroup, Label } from 'reactstrap';
+import RandomPhoto from "components/RandomPhoto";
+import PropTypes from "prop-types";
+import React from "react";
+import { FormGroup, Label } from "reactstrap";
 
 RandomPhotoField.propTypes = {
   field: PropTypes.object.isRequired,
@@ -11,16 +11,16 @@ RandomPhotoField.propTypes = {
 };
 
 RandomPhotoField.defaultProps = {
-  label: '',
-}
+  label: "",
+};
 
 function RandomPhotoField(props) {
   const { field, form, label } = props;
   const { name, value, onBlur } = field;
 
   const handleImageUrlChange = (newImageUrl) => {
-    form.setFieldValue(name, newImageUrl)
-  }
+    form.setFieldValue(name, newImageUrl);
+  };
 
   return (
     <FormGroup>
