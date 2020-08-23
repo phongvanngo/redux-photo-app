@@ -105,6 +105,8 @@ function InputField(props) {
 }
 ```
 
+
+
 ## Random Photo control
 
 RandomPhoto
