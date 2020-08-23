@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import Select from 'react-select';
-import { FormGroup, Label } from 'reactstrap';
+import PropTypes from "prop-types";
+import React from "react";
+import Select from "react-select";
+import { FormGroup, Label } from "reactstrap";
 
 SelectField.propTypes = {
   field: PropTypes.object.isRequired,
@@ -14,28 +14,32 @@ SelectField.propTypes = {
 };
 
 SelectField.defaultProps = {
-  label: '',
-  placeholder: '',
+  label: "",
+  placeholder: "",
   disabled: false,
   options: [],
-}
+};
 
 function SelectField(props) {
   const { field, options, label, placeholder, disabled } = props;
-  const { name, value } = field;
-  const selectedOption = options.find(option => option.value === value);
+  const { name, value } = field; //onChange, onBlur
 
+  const selectedOption = options.find((option) => option.value === value);
+
+  // fake onChange, tu onChange cua select form ---> set onChange cho field ---> set gia tri value cho field
   const handleSelectedOptionChange = (selectedOption) => {
-    const selectedValue = selectedOption ? selectedOption.value : selectedOption;
+    const selectedValue = selectedOption
+      ? selectedOption.value
+      : selectedOption;
 
     const changeEvent = {
       target: {
         name: name,
-        value: selectedValue
-      }
+        value: selectedValue,
+      },
     };
     field.onChange(changeEvent);
-  }
+  };
 
   return (
     <FormGroup>
@@ -45,8 +49,7 @@ function SelectField(props) {
         id={name}
         {...field}
         value={selectedOption}
-        onChange={handleSelectedOptionChange}
-
+        onChange={handleSelectedOptionChange} //override, vi vay phai dat duoi field (vi field co onChange)
         placeholder={placeholder}
         isDisabled={disabled}
         options={options}

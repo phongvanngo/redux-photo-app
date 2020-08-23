@@ -1,11 +1,11 @@
-import { PHOTO_CATEGORY_OPTIONS } from 'constants/global';
-import Images from 'constants/images';
-import InputField from 'custom-fields/InputField';
-import SelectField from 'custom-fields/SelectField';
-import { FastField, Form, Formik } from 'formik';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Button, FormGroup, Label } from 'reactstrap';
+import { PHOTO_CATEGORY_OPTIONS } from "constants/global";
+import Images from "constants/images";
+import InputField from "custom-fields/InputField";
+import SelectField from "custom-fields/SelectField";
+import { FastField, Form, Formik } from "formik";
+import PropTypes from "prop-types";
+import React from "react";
+import { Button, FormGroup, Label } from "reactstrap";
 
 PhotoForm.propTypes = {
   onSubmit: PropTypes.func,
@@ -13,20 +13,18 @@ PhotoForm.propTypes = {
 
 PhotoForm.defaultProps = {
   onSubmit: null,
-}
+};
 
 function PhotoForm(props) {
   const initialValues = {
-    title: '',
+    title: "",//title =null;
     categoryId: null,
   };
 
   // npm i --save react-select
   return (
-    <Formik
-      initialValues={initialValues}
-    >
-      {formikProps => {
+    <Formik initialValues={initialValues}>
+      {(formikProps) => {
         // do something here ...
         const { values, errors, touched } = formikProps;
         console.log({ values, errors, touched });
@@ -36,15 +34,22 @@ function PhotoForm(props) {
             <FastField
               name="title"
               component={InputField}
-
+              // props truyen vao cho input field
               label="Title"
+              placeholder="Eg: Wow nature ..."
+            />
+
+            <FastField
+              name="name"
+              component={InputField}
+              // props truyen vao cho input field
+              label="name"
               placeholder="Eg: Wow nature ..."
             />
 
             <FastField
               name="categoryId"
               component={SelectField}
-
               label="Category"
               placeholder="What's your photo category?"
               options={PHOTO_CATEGORY_OPTIONS}
@@ -53,9 +58,18 @@ function PhotoForm(props) {
             <FormGroup>
               <Label for="categoryId">Photo</Label>
 
-              <div><Button type="button" outline color="primary">Random a photo</Button></div>
               <div>
-                <img width="200px" height="200px" src={Images.COLORFUL_BG} alt="colorful background" />
+                <Button type="button" outline color="primary">
+                  Random a photo
+                </Button>
+              </div>
+              <div>
+                <img
+                  width="200px"
+                  height="200px"
+                  src={Images.COLORFUL_BG}
+                  alt="colorful background"
+                />
               </div>
             </FormGroup>
 
